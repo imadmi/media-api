@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
+  fullName  String
+  login     String    @unique
+  password  String
+  picture   String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  posts     Post[]    @relation("UserPosts")
+  likes     Like[]    @relation("UserLikes")
+  comments  Comment[] @relation("UserComments")
+  reposts   Repost[]  @relation("UserReposts")
+}
+
+model Post {
+  id        Int        @id @default(autoincrement())
+  content   String
+  media     String?    // For images, videos, etc.
+  authorId  Int
+  author    User       @relation("UserPosts", fields: [authorId], references: [id])
+  parentId  Int?       // For reposts, references the original post
+  parent    Post?      @relation("RepostedPost", fields: [parentId], references: [id])
+  reposts   Post[]     @relation("RepostedPost")
+  likes     Like[]     @relation("PostLikes")
+  comments  Comment[]  @relation("PostComments")
+  repostedBy Repost[]  @relation("PostReposts") // Added to fix the relation
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model Comment {
+  id        Int       @id @default(autoincrement())
+  content   String
+  postId    Int
+  post      Post      @relation("PostComments", fields: [postId], references: [id])
+  authorId  Int
+  author    User      @relation("UserComments", fields: [authorId], references: [id])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Like {
+  id        Int       @id @default(autoincrement())
+  postId    Int
+  post      Post      @relation("PostLikes", fields: [postId], references: [id])
+  userId    Int
+  user      User      @relation("UserLikes", fields: [userId], references: [id])
+  createdAt DateTime  @default(now())
+}
+
+model Repost {
+  id        Int       @id @default(autoincrement())
+  postId    Int
+  post      Post      @relation("PostReposts", fields: [postId], references: [id])
+  userId    Int
+  user      User      @relation("UserReposts", fields: [userId], references: [id])
+  createdAt DateTime  @default(now())
+}
