@@ -4,9 +4,9 @@ import {
   Post,
   Body,
   Param,
-  Patch,
   Delete,
   UseGuards,
+  Put,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { Prisma } from '@prisma/client';
@@ -32,7 +32,7 @@ export class PostsController {
     return this.postsService.findOne(+id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(@Param('id') id: string, @Body() data: Prisma.PostUpdateInput) {
     return this.postsService.update(+id, data);
   }
