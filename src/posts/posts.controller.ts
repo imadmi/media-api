@@ -7,19 +7,23 @@ import {
   Delete,
   UseGuards,
   Put,
+  Request,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { Prisma } from '@prisma/client';
 import { AuthGuard } from '@nestjs/passport';
+import { AuthService } from 'src/auth/auth.service';
 
-@UseGuards(AuthGuard('jwt'))
 @Controller('posts')
+@UseGuards(AuthGuard('jwt'))
 export class PostsController {
-  constructor(private readonly postsService: PostsService) {}
+  constructor(
+    private readonly postsService: PostsService,
+  ) {}
 
   @Post()
-  create(@Body() data: Prisma.PostCreateInput) {
-    return this.postsService.create(data);
+  create(@Body() data: Prisma.PostCreateInput, @Request() req: any) {
+    return this.postsService.create(data, req);
   }
 
   @Get()

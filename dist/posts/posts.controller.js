@@ -21,8 +21,8 @@ let PostsController = class PostsController {
     constructor(postsService) {
         this.postsService = postsService;
     }
-    create(data) {
-        return this.postsService.create(data);
+    create(data, req) {
+        return this.postsService.create(data, req);
     }
     findAll() {
         return this.postsService.findAll();
@@ -41,8 +41,9 @@ exports.PostsController = PostsController;
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Request)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", void 0)
 ], PostsController.prototype, "create", null);
 __decorate([
@@ -74,8 +75,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], PostsController.prototype, "delete", null);
 exports.PostsController = PostsController = __decorate([
-    (0, common_1.UseGuards)((0, passport_1.AuthGuard)('jwt')),
     (0, common_1.Controller)('posts'),
+    (0, common_1.UseGuards)((0, passport_1.AuthGuard)('jwt')),
     __metadata("design:paramtypes", [posts_service_1.PostsService])
 ], PostsController);
 //# sourceMappingURL=posts.controller.js.map

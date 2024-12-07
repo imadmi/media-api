@@ -12,15 +12,49 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PostsService = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../prisma/prisma.service");
+const jwt = require("jsonwebtoken");
 let PostsService = class PostsService {
     constructor(prisma) {
         this.prisma = prisma;
+        this.getUserId = (req) => {
+            try {
+                const token = this.getJwt(req);
+                const decoded = jwt.verify(token, process.env.JWT_SECRET);
+                if (decoded) {
+                    return decoded.sub;
+                }
+                return null;
+            }
+            catch (error) {
+                throw new Error('Invalid or expired token');
+            }
+        };
     }
-    async create(data) {
-        return this.prisma.post.create({ data });
+    getJwt(req) {
+        const jwt = req.headers.authorization?.split(' ')[1];
+        return jwt;
+    }
+    async create(data, req) {
+        const userId = this.getUserId(req);
+        return this.prisma.post.create({
+            data: {
+                authorId: userId,
+                ...data,
+            },
+        });
     }
     async findAll() {
-        return this.prisma.post.findMany();
+        return this.prisma.post.findMany({
+            include: {
+                author: true,
+                likes: true,
+                comments: true,
+                reposts: true,
+            },
+            orderBy: {
+                createdAt: 'desc',
+            },
+        });
     }
     async findOne(id) {
         return this.prisma.post.findUnique({ where: { id } });

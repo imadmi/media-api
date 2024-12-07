@@ -34,7 +34,7 @@ model Post {
   reposts   Post[]     @relation("RepostedPost")
   likes     Like[]     @relation("PostLikes")
   comments  Comment[]  @relation("PostComments")
-  repostedBy Repost[]  @relation("PostReposts") // Added to fix the relation
+  repostedBy Repost[]  @relation("PostReposts")
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
 }

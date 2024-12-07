@@ -3,7 +3,7 @@ import { Prisma } from '@prisma/client';
 export declare class PostsController {
     private readonly postsService;
     constructor(postsService: PostsService);
-    create(data: Prisma.PostCreateInput): Promise<{
+    create(data: Prisma.PostCreateInput, req: any): Promise<{
         id: number;
         createdAt: Date;
         updatedAt: Date;
