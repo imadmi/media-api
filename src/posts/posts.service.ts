@@ -40,7 +40,17 @@ export class PostsService {
       include: {
         author: true,
         likes: true,
-        comments: true,
+        comments: {
+          include: {
+            author: {
+              select: {
+                fullName: true,
+                login: true,
+                picture: true,
+              },
+            },
+          },
+        },
         reposts: true,
       },
       orderBy: {

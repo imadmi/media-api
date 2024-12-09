@@ -5,47 +5,47 @@ export declare class PostsController {
     constructor(postsService: PostsService);
     create(data: Prisma.PostCreateInput, req: any): Promise<{
         id: number;
+        content: string;
+        authorId: number;
         createdAt: Date;
         updatedAt: Date;
-        content: string;
         media: string | null;
-        authorId: number;
         parentId: number | null;
     }>;
     findAll(): Promise<{
         id: number;
+        content: string;
+        authorId: number;
         createdAt: Date;
         updatedAt: Date;
-        content: string;
         media: string | null;
-        authorId: number;
         parentId: number | null;
     }[]>;
     findOne(id: string): Promise<{
         id: number;
+        content: string;
+        authorId: number;
         createdAt: Date;
         updatedAt: Date;
-        content: string;
         media: string | null;
-        authorId: number;
         parentId: number | null;
     }>;
     update(id: string, data: Prisma.PostUpdateInput): Promise<{
         id: number;
+        content: string;
+        authorId: number;
         createdAt: Date;
         updatedAt: Date;
-        content: string;
         media: string | null;
-        authorId: number;
         parentId: number | null;
     }>;
     delete(id: string): Promise<{
         id: number;
+        content: string;
+        authorId: number;
         createdAt: Date;
         updatedAt: Date;
-        content: string;
         media: string | null;
-        authorId: number;
         parentId: number | null;
     }>;
 }

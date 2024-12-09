@@ -7,13 +7,13 @@ export declare class LikeController {
     likePost(postId: number, req: any): Promise<{
         id: number;
         postId: number;
-        userId: number;
         createdAt: Date;
+        userId: number;
     }>;
     unlikePost(postId: number, req: any): Promise<{
         id: number;
         postId: number;
-        userId: number;
         createdAt: Date;
+        userId: number;
     }>;
 }
