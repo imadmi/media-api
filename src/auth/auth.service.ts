@@ -36,6 +36,7 @@ export class AuthService {
   }
   async register(email: string, fullName: string, password: string) {
     const existingUser = await this.userService.findByEmail(email);
+    console.log("🚀 ~ AuthService ~ register ~ existingUser:", existingUser)
     if (existingUser) {
       throw new HttpException(
         { success: false, message: 'User already exists, try sign in' },

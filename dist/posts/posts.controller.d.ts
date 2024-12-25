@@ -6,46 +6,46 @@ export declare class PostsController {
     create(data: Prisma.PostCreateInput, req: any): Promise<{
         id: number;
         content: string;
+        media: string | null;
         authorId: number;
+        parentId: number | null;
         createdAt: Date;
         updatedAt: Date;
-        media: string | null;
-        parentId: number | null;
     }>;
     findAll(): Promise<{
         id: number;
         content: string;
+        media: string | null;
         authorId: number;
+        parentId: number | null;
         createdAt: Date;
         updatedAt: Date;
-        media: string | null;
-        parentId: number | null;
     }[]>;
     findOne(id: string): Promise<{
         id: number;
         content: string;
+        media: string | null;
         authorId: number;
+        parentId: number | null;
         createdAt: Date;
         updatedAt: Date;
-        media: string | null;
-        parentId: number | null;
     }>;
     update(id: string, data: Prisma.PostUpdateInput): Promise<{
         id: number;
         content: string;
+        media: string | null;
         authorId: number;
+        parentId: number | null;
         createdAt: Date;
         updatedAt: Date;
-        media: string | null;
-        parentId: number | null;
     }>;
     delete(id: string): Promise<{
         id: number;
         content: string;
+        media: string | null;
         authorId: number;
+        parentId: number | null;
         createdAt: Date;
         updatedAt: Date;
-        media: string | null;
-        parentId: number | null;
     }>;
 }

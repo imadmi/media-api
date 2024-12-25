@@ -6,14 +6,14 @@ export declare class LikeController {
     constructor(likeService: LikeService, postsService: PostsService);
     likePost(postId: number, req: any): Promise<{
         id: number;
-        postId: number;
         createdAt: Date;
+        postId: number;
         userId: number;
     }>;
     unlikePost(postId: number, req: any): Promise<{
         id: number;
-        postId: number;
         createdAt: Date;
+        postId: number;
         userId: number;
     }>;
 }

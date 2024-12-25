@@ -47,6 +47,7 @@ export class PostsService {
                 fullName: true,
                 login: true,
                 picture: true,
+                id : true,
               },
             },
           },

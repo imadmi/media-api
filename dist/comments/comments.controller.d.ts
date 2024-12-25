@@ -6,28 +6,28 @@ export declare class CommentsController {
     constructor(commentsService: CommentsService, postsService: PostsService);
     create(data: any, req: any): Promise<{
         id: number;
-        content: string;
-        postId: number;
-        authorId: number;
         createdAt: Date;
         updatedAt: Date;
+        content: string;
+        authorId: number;
+        postId: number;
     }>;
     update(id: number, content: {
         content: string;
     }): Promise<{
         id: number;
-        content: string;
-        postId: number;
-        authorId: number;
         createdAt: Date;
         updatedAt: Date;
+        content: string;
+        authorId: number;
+        postId: number;
     }>;
     delete(id: number): Promise<{
         id: number;
-        content: string;
-        postId: number;
-        authorId: number;
         createdAt: Date;
         updatedAt: Date;
+        content: string;
+        authorId: number;
+        postId: number;
     }>;
 }

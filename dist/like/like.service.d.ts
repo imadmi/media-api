@@ -4,14 +4,14 @@ export declare class LikeService {
     constructor(prisma: PrismaService);
     likePost(postId: number, userId: number): Promise<{
         id: number;
+        createdAt: Date;
         postId: number;
         userId: number;
-        createdAt: Date;
     }>;
     unlikePost(postId: number, userId: number): Promise<{
         id: number;
+        createdAt: Date;
         postId: number;
         userId: number;
-        createdAt: Date;
     }>;
 }
